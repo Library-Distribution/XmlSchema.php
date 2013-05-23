@@ -3,9 +3,9 @@ require_once dirname(__FILE__) . '/XmlSchemaNode.php';
 require_once dirname(__FILE__) . '/XmlSchemaElement.php';
 require_once dirname(__FILE__) . '/XmlSchemaAttribute.php';
 
-require_once dirname(__FILE__) . '/XmlSchemaBuiltinSimpleType.php';
-require_once dirname(__FILE__) . '/XmlSchemaCustomSimpleType.php';
-require_once dirname(__FILE__) . '/XmlSchemaComplexType.php';
+require_once dirname(__FILE__) . '/types/XmlSchemaBuiltinSimpleType.php';
+require_once dirname(__FILE__) . '/types/XmlSchemaCustomSimpleType.php';
+require_once dirname(__FILE__) . '/types/XmlSchemaComplexType.php';
 
 function starts_with($str, $needle) {
 	return substr($str, 0, strlen($needle)) == $needle;

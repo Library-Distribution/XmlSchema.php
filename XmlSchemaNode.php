@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/XmlSchemaType.php';
+require_once dirname(__FILE__) . '/types/XmlSchemaType.php';
 
 abstract class XmlSchemaNode {
 	protected $schema;
