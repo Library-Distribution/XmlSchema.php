@@ -26,6 +26,7 @@ class XmlSchema extends XmlSchemaNode {
 		$this->doc->loadXML($source);
 
 		$this->xpath = new DOMXPath($this->doc);
+		$this->xpath->registerNamespace('xsd', self::schemaNamespace);
 		$this->prefix = $this->doc->lookupPrefix(self::schemaNamespace);
 
 		parent::__construct($this, $this->rootElement()->elem);
