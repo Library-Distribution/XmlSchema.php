@@ -12,6 +12,6 @@ abstract class XmlSchemaType {
 		return $this->name;
 	}
 
-	public abstract function coerce($value);
+	public abstract function coerce($value, $doc, $schema_node);
 }
 ?>

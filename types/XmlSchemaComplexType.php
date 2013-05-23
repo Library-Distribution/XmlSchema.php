@@ -6,7 +6,7 @@ class XmlSchemaComplexType extends XmlSchemaType {
 		parent::__construct($name, $node);
 	}
 
-	public function coerce($value) {
+	public function coerce($value, $doc, $schema_node) {
 		throw new Exception('Cannot coerce for complex type');
 	}
 }
