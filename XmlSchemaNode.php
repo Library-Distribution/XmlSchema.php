@@ -19,6 +19,10 @@ abstract class XmlSchemaNode {
 		return $this->name;
 	}
 
+	public function getSchema() {
+		return $this->schema;
+	}
+
 	public function getType() {
 		if ($this->type !== NULL) {
 			return $this->type;
