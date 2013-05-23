@@ -31,14 +31,12 @@ abstract class XmlSchemaNode {
 
 		$nodes = $this->schema->query('xsd:simpleType', $this->elem);
 		if ($nodes->length > 0) {
-			$node = $nodes->item(0);
-			return $this->type = new XmlSchemaSimpleType('<# anonymous type #>', $node);
+			return $this->type = new XmlSchemaSimpleType('<# anonymous type #>', $nodes->item(0));
 		}
 
 		$nodes = $this->schema->query('xsd:complexType', $this->elem);
 		if ($nodes->length > 0) {
-			$node = $nodes->item(0);
-			return $this->type = new XmlSchemaComplexType('<# anonymous type #>', $node);
+			return $this->type = new XmlSchemaComplexType('<# anonymous type #>', $nodes->item(0));
 		}
 
 		throw new Exception('No type found for this node');
