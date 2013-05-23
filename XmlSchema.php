@@ -67,6 +67,10 @@ class XmlSchema extends XmlSchemaNode {
 		return NULL;
 	}
 
+	public function query($path, $context) {
+		return $this->xpath->query($path, $context);
+	}
+
 	##################################################################################################
 
 	public function getElement($name, $context) {

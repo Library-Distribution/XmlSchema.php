@@ -29,13 +29,13 @@ abstract class XmlSchemaNode {
 			return $this->type = $this->schema->getType($type_name);
 		}
 
-		$nodes = $this->schema->xpath->query('simpleType', $this->elem);
+		$nodes = $this->schema->query('xsd:simpleType', $this->elem);
 		if ($nodes->length > 0) {
 			$node = $nodes->item(0);
 			return $this->type = new XmlSchemaSimpleType('<# anonymous type #>', $node);
 		}
 
-		$nodes = $this->schema->xpath->query('complexType', $this->elem);
+		$nodes = $this->schema->query('xsd:complexType', $this->elem);
 		if ($nodes->length > 0) {
 			$node = $nodes->item(0);
 			return $this->type = new XmlSchemaComplexType('<# anonymous type #>', $node);
