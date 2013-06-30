@@ -1,7 +1,7 @@
 <?php
-require_once dirname(__FILE__) . '/XmlSchemaNode.php';
-require_once dirname(__FILE__) . '/XmlSchemaElement.php';
-require_once dirname(__FILE__) . '/XmlSchemaAttribute.php';
+require_once dirname(__FILE__) . '/nodes/XmlSchemaNode.php';
+require_once dirname(__FILE__) . '/nodes/XmlSchemaElement.php';
+require_once dirname(__FILE__) . '/nodes/XmlSchemaAttribute.php';
 
 require_once dirname(__FILE__) . '/types/XmlSchemaBuiltinSimpleType.php';
 require_once dirname(__FILE__) . '/types/XmlSchemaCustomSimpleType.php';

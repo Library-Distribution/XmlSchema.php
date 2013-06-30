@@ -1,9 +1,9 @@
 <?php
-require_once dirname(__FILE__) . '/XmlSchemaObject.php';
-require_once dirname(__FILE__) . '/types/XmlSchemaCustomSimpleType.php';
-require_once dirname(__FILE__) . '/types/XmlSchemaComplexType.php';
+require_once dirname(__FILE__) . '/../XmlSchemaParticle.php';
+require_once dirname(__FILE__) . '/../types/XmlSchemaCustomSimpleType.php';
+require_once dirname(__FILE__) . '/../types/XmlSchemaComplexType.php';
 
-abstract class XmlSchemaNode extends XmlSchemaObject {
+abstract class XmlSchemaNode extends XmlSchemaParticle {
 	protected $name;
 	protected $type = NULL;
 
