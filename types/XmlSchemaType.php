@@ -1,11 +1,13 @@
 <?php
-abstract class XmlSchemaType {
-	protected $name;
-	protected $node;
+require_once dirname(__FILE__) . '/../XmlSchemaObject.php';
 
-	public function __construct($name, $node = NULL) {
+abstract class XmlSchemaType extends XmlSchemaObject {
+	protected $name;
+
+	public function __construct($name, $schema, $node = NULL) {
+		parent::__construct($schema, $node);
+
 		$this->name = $name;
-		$this->node = $node;
 	}
 
 	public function getName() {

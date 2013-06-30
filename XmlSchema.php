@@ -29,7 +29,7 @@ class XmlSchema extends XmlSchemaNode {
 		$this->xpath->registerNamespace('xsd', self::schemaNamespace);
 		$this->prefix = $this->doc->lookupPrefix(self::schemaNamespace);
 
-		parent::__construct($this, $this->rootElement()->elem);
+		parent::__construct($this, $this->rootElement()->node);
 	}
 
 	public function rootElement() {

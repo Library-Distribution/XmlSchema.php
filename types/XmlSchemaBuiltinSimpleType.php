@@ -2,8 +2,8 @@
 require_once dirname(__FILE__) . '/XmlSchemaSimpleType.php';
 
 class XmlSchemaBuiltinSimpleType extends XmlSchemaSimpleType {
-	public function __construct($name) {
-		parent::__construct($name);
+	public function __construct($name, $schema) {
+		parent::__construct($name, $schema);
 	}
 
 	public function coerce($value, $doc, $schema_node) {
