@@ -75,7 +75,7 @@ class XmlSchema extends XmlSchemaNode {
 	##################################################################################################
 
 	public function getElement($name, $context) {
-		$node = $this->getNode($name, $context, 'element');
+		$node = $this->getNode($name, $context, XmlSchemaNode::NODE_TYPE_ELEMENT);
 		if ($node !== NULL) {
 			return new XmlSchemaElement($this, $node);
 		}
@@ -83,7 +83,7 @@ class XmlSchema extends XmlSchemaNode {
 	}
 
 	public function getAttribute($name, $context) {
-		$node = $this->getNode($name, $context, 'attribute');
+		$node = $this->getNode($name, $context, XmlSchemaNode::NODE_TYPE_ATTRIBUTE);
 		if ($node !== NULL) {
 			return new XmlSchemaAttribute($this, $node);
 		}

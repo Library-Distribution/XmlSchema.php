@@ -8,6 +8,9 @@ abstract class XmlSchemaNode {
 	protected $name;
 	protected $type = NULL;
 
+	const NODE_TYPE_ATTRIBUTE = 'attribute';
+	const NODE_TYPE_ELEMENT = 'element';
+
 	public function __construct($schema, $element) {
 		$this->elem = $element;
 		$this->schema = $schema;
