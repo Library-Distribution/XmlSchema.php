@@ -79,7 +79,7 @@ class XmlSchema extends XmlSchemaNode {
 		if ($node !== NULL) {
 			return new XmlSchemaElement($this, $node);
 		}
-		return $node;
+		throw new Exception();
 	}
 
 	public function getAttribute($name, $context) {
@@ -87,7 +87,7 @@ class XmlSchema extends XmlSchemaNode {
 		if ($node !== NULL) {
 			return new XmlSchemaAttribute($this, $node);
 		}
-		return $node;
+		throw new Exception();
 	}
 
 	private function getNode($name, $context, $type) {
