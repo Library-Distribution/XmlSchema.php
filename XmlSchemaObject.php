@@ -11,6 +11,7 @@ abstract class XmlSchemaObject {
 
 		if (!self::$dummy_doc) {
 			self::$dummy_doc = new DOMDocument();
+			self::$dummy_doc->appendChild(self::$dummy_doc->createElement('dummy'));
 		}
 	}
 

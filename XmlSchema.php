@@ -60,6 +60,14 @@ class XmlSchema extends XmlSchemaNode {
 		return $this->doc->documentElement->getAttribute('targetNamespace');
 	}
 
+	public function attributesRequirePrefix() {
+		return $this->doc->documentElement->getAttribute('attributeFormDefault') === 'qualified';
+	}
+
+	public function elementsRequirePrefix() {
+		return $this->doc->documentElement->getAttribute('elementFormDefault') === 'qualified';
+	}
+
 	public static function getNamespacePrefix($str) {
 		$pos = strpos($str, ':');
 		if ($pos !== FALSE) {
