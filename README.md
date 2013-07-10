@@ -8,3 +8,27 @@ to ease output of valid XML from the API. As soon as that works, further work on
 
 ## Contribute
 Feel free to fork and contribute if interested in seeing this develop further, pull requests are welcome!
+
+## Classes
+The class structure is:
+```
+XmlSchemaObject
+	*XmlSchemaAnnotation
+	XmlSchemaType
+		XmlSchemaComplexType
+		XmlSchemaSimpleType
+			XmlSchemaBuiltinSimpleType
+			XmlSchemaCustomSimpleType
+	XmlSchemaParticle
+		XmlSchemaCompositor
+			XmlSchemaSequence
+			XmlSchemaChoice
+			XmlSchemaAll
+		XmlSchemaNode
+			XmlSchemaElement
+			XmlSchemaAttribute
+			XmlSchema
+		*XmlSchemaGroup
+		*XmlSchemaAny
+```
+(* not yet existing)
