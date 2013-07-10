@@ -11,16 +11,17 @@ class XmlSchemaSequence extends XmlSchemaCompositor {
 		if (!is_array($value)) {
 			throw new Exception('Must be array');
 		}
+		$sub_elements = $this->getSubElements();
 
 		# 1. one type of element
-		if (count($this->getSubElements()) === 1) {
+		if (count($sub_elements) === 1) {
 			# assume continous numerical array
 			if (array_keys($value) !== range(0, count($value) - 1)) {
 				throw new Exception('Must be numerical array');
 			}
 
 			# convert each value to one element
-			$elem = $this->getSubElements()[0];
+			$elem = $sub_elements[0];
 			foreach ($value AS $item) {
 				$nodes = array_merge($nodes, $elem->coerce($item));
 			}
