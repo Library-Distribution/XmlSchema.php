@@ -63,15 +63,7 @@ class XmlSchemaComplexType extends XmlSchemaType {
 	private function parseAttributes() {
 		$this->attributes = array();
 		foreach ($this->schema->query('./xsd:attribute', $this->node) AS $attr_node) {
-			$attribute = new XmlSchemaAttribute($this->schema, $attr_node);
-			$attributes[] = $attribute;
-
-			if (is_array($value) && isset($value[$attr_name])) {
-				$this->appendChild($attribute->getType()->coerce($value[$attr_name]));
-
-			} else if ($attribute->isRequired()) {
-				throw new Exception('Required attribute is missing');
-			}
+			$this->attributes[] = new XmlSchemaAttribute($this->schema, $attr_node);
 		}
 	}
 
