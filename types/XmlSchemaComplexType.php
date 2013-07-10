@@ -31,9 +31,9 @@ class XmlSchemaComplexType extends XmlSchemaType {
 		}
 
 		switch ($content_type) {
-			case self::CT_ALL:      $this->content = new XmlSchemaAll($content_node, $schema);
-			case self::CT_CHOICE:   $this->content = new XmlSchemaChoice($content_node, $schema);
-			case self::CT_SEQUENCE: $this->content = new XmlSchemaSequence($content_node, $schema);
+			case self::CT_ALL:      $this->content = new XmlSchemaAll($schema, $content_node);
+			case self::CT_CHOICE:   $this->content = new XmlSchemaChoice($schema, $content_node);
+			case self::CT_SEQUENCE: $this->content = new XmlSchemaSequence($schema, $content_node);
 		}
 	}
 

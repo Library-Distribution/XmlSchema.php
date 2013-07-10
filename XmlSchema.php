@@ -112,19 +112,19 @@ class XmlSchema extends XmlSchemaNode {
 		}
 
 		if (starts_with($name, $this->prefix . ':')) { # it's a builtin XSD type
-			return $this->types[$name] = new XmlSchemaBuiltinSimpleType($name);
+			return $this->types[$name] = new XmlSchemaBuiltinSimpleType($name, $this);
 		}
 
 		# check for a simple type
 		$node = $this->searchTypeDefinition($name, 'simpleType');
 		if ($node !== NULL) {
-			return $this->types[$name] = new XmlSchemaCustomSimpleType($name, $node);
+			return $this->types[$name] = new XmlSchemaCustomSimpleType($name, $this, $node);
 		}
 
 		# check for a complex type
 		$node = $this->searchTypeDefinition($name, 'complexType');
 		if ($node !== NULL) {
-			return $this->types[$name] = new XmlSchemaComplexType($name, $node);
+			return $this->types[$name] = new XmlSchemaComplexType($name, $this, $node);
 		}
 
 		$prefix = self::getNamespacePrefix($name);
