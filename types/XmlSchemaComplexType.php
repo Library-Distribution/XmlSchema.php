@@ -45,7 +45,7 @@ class XmlSchemaComplexType extends XmlSchemaType {
 			foreach ($this->attributes AS $attribute) {
 				$attr_name = $attribute->getName();
 
-				if (is_array($value) && isset($value[$attr_name])) {
+				if (is_array($value) && array_key_exists($attr_name, $value)) {
 					$nodes = array_merge($nodes, $attribute->coerce($value[$attr_name]));
 					unset($value[$attr_name]);
 				} else if ($attribute->isRequired()) {
