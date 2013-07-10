@@ -72,6 +72,10 @@ class XmlSchema extends XmlSchemaNode {
 		return $this->xpath->query($path, $context);
 	}
 
+	public function coerce($value) {
+		return $this->rootElement()->coerce($value);
+	}
+
 	##################################################################################################
 
 	public function getElement($name, $context) {

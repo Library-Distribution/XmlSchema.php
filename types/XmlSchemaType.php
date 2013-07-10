@@ -13,7 +13,5 @@ abstract class XmlSchemaType extends XmlSchemaObject {
 	public function getName() {
 		return $this->name;
 	}
-
-	public abstract function coerce($value, $doc, $schema_node);
 }
 ?>

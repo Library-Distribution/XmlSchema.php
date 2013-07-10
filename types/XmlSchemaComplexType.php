@@ -37,8 +37,8 @@ class XmlSchemaComplexType extends XmlSchemaType {
 		}
 	}
 
-	public function coerce($value, $doc, $schema_node) {
-		$node = $doc->createElement($schema_node->getName());
+	public function coerce($value) {
+		$nodes = array();
 		$content_type = $this->getContentType();
 
 		if ($content_type != self::CT_SIMPLECONTENT && $content_type != self::CT_COMPLEXCONTENT) {
@@ -46,7 +46,7 @@ class XmlSchemaComplexType extends XmlSchemaType {
 				$attr_name = $attribute->getName();
 
 				if (is_array($value) && isset($value[$attr_name])) {
-					$node->appendChild($attribute->getType()->coerce($value[$attr_name], $doc, $attribute));
+					$nodes[] = $attribute->coerce($value[$attr_name]);
 				} else if ($attribute->isRequired()) {
 					throw new Exception('Required attribute is missing');
 				}
@@ -54,10 +54,10 @@ class XmlSchemaComplexType extends XmlSchemaType {
 		}
 
 		if ($content_type !== self::CT_NONE) {
-			$this->content->coerce($value, $node);
+			$nodes = array_merge($nodes, $this->content->coerce($value));
 		}
 
-		return $node;
+		return $nodes;
 	}
 
 	private function parseAttributes() {
@@ -67,7 +67,7 @@ class XmlSchemaComplexType extends XmlSchemaType {
 			$attributes[] = $attribute;
 
 			if (is_array($value) && isset($value[$attr_name])) {
-				$this->appendChild($attribute->getType()->coerce($value[$attr_name], $doc, $attr_node));
+				$this->appendChild($attribute->getType()->coerce($value[$attr_name]));
 
 			} else if ($attribute->isRequired()) {
 				throw new Exception('Required attribute is missing');

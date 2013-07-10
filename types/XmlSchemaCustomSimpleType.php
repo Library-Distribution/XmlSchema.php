@@ -6,7 +6,7 @@ class XmlSchemaCustomSimpleType extends XmlSchemaSimpleType {
 		parent::__construct($name, $node);
 	}
 
-	public function coerce($value, $doc, $schema_node) {
+	public function coerce($value) {
 		// pass to base type
 		// perform further restrictions/changes
 		return $value;

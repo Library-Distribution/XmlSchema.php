@@ -6,7 +6,7 @@ class XmlSchemaBuiltinSimpleType extends XmlSchemaSimpleType {
 		parent::__construct($name, $schema);
 	}
 
-	public function coerce($value, $doc, $schema_node) {
+	public function coerce($value) {
 		$short_name = substr($this->name, strpos($this->name, ':') + 1); # remove namespace prefix
 
 		switch ($short_name) {
