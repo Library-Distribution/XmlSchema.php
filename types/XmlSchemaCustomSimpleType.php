@@ -9,7 +9,7 @@ class XmlSchemaCustomSimpleType extends XmlSchemaSimpleType {
 	public function coerce($value) {
 		// pass to base type
 		// perform further restrictions/changes
-		return $value;
+		return array($value);
 	}
 }
 ?>

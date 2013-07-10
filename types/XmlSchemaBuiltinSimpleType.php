@@ -11,10 +11,10 @@ class XmlSchemaBuiltinSimpleType extends XmlSchemaSimpleType {
 
 		switch ($short_name) {
 			# todo: also perform validation where cannot convert (e.g. integers: positive, negative, ...)
-			case 'boolean': return ((bool)$value) ? 'true' : 'false';
+			case 'boolean': return array(((bool)$value) ? 'true' : 'false');
 			case 'string':
 			default:
-				return (string)$value;
+				return array((string)$value);
 		}
 	}
 }
