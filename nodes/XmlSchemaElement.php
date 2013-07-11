@@ -10,9 +10,16 @@ class XmlSchemaElement extends XmlSchemaNode {
 			$node = self::$dummy_doc->createElement($this->name);
 		}
 
-		$children = $this->getType()->coerce($value);
-		foreach ($children AS $child) {
-			$node->appendChild($node->ownerDocument->importNode($child, true));
+		$can_set = true;
+		foreach ($this->getType()->coerce($value) AS $child) {
+			if ($child instanceof DOMNode) {
+				$node->appendChild($node->ownerDocument->importNode($child, true));
+			} else {
+				if ($can_set = !$can_set) {
+					throw new Exception('Already set the value');
+				}
+				$node->nodeValue = $child;
+			}
 		}
 
 		return array($node);
