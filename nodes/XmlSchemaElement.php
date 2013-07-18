@@ -2,6 +2,8 @@
 require_once dirname(__FILE__) . '/XmlSchemaNode.php';
 
 class XmlSchemaElement extends XmlSchemaNode {
+	protected $default_root = false;
+
 	public function coerce($value) {
 		if ($this->schema->elementsRequirePrefix()) {
 			$namespace = $this->schema->getTargetNamespace();
@@ -23,6 +25,22 @@ class XmlSchemaElement extends XmlSchemaNode {
 		}
 
 		return array($node);
+	}
+
+	protected function extractMeta() {
+		parent::extractMeta();
+
+		foreach ($this->get_meta_nodes() AS $node) {
+			switch ($node->localName) {
+				case 'default-root':
+					$this->default_root = true;
+					break;
+			}
+		}
+	}
+
+	public function isDefaultRoot() {
+		return $this->default_root;
 	}
 }
 ?>

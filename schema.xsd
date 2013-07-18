@@ -6,4 +6,9 @@
 	<!-- Changes the source names for attributes or elements. Default is the node's own name. -->
 	<xsd:element name="source-name" type="xsd:string"/>
 
+	<!-- In case of several possible root elements (salami slice design), defines the element to assume as root. -->
+	<xsd:element name="default-root">
+		<xsd:complexType/>
+	</xsd:element>
+
 </xsd:schema>

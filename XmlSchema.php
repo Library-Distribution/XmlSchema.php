@@ -38,6 +38,7 @@ class XmlSchema extends XmlSchemaNode {
 		if (!$this->root) {
 			$elements = $this->doc->getElementsByTagNameNS(self::schemaNamespace, 'element'); # all <xsd:element>
 			$trim = strlen($this->prefix . ':element');
+			$roots = array();
 
 			foreach ($elements AS $element) {
 				$path = $element->getNodePath();
@@ -47,11 +48,34 @@ class XmlSchema extends XmlSchemaNode {
 
 				# ... further filtering may be necessary ...
 
-				$this->root = new XmlSchemaElement($this, $element);
-				break;
+				$roots[] = new XmlSchemaElement($this, $element);
 			}
+
+			# if at least one is defined as default root, throw out those who aren't
+			if (self::contains_default_root($roots)) {
+				foreach ($roots AS $i => $root) {
+					if (!$root->isDefaultRoot()) {
+						unset($roots[$i]);
+					}
+				}
+				$roots = array_merge($roots); # make it continous again
+			}
+
+			if (count($roots) > 1) {
+				throw new Exception('Several possible root elements!');
+			}
+			$this->root = $roots[0];
 		}
 		return $this->root;
+	}
+
+	private static function contains_default_root($roots) {
+		foreach ($roots AS $root) {
+			if ($root->isDefaultRoot()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public function getPrefix($ns = NULL) {
