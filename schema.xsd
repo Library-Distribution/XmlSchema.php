@@ -1,0 +1,9 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:transform="data/transform/xml/meta"
+	attributeFormDefault="qualified" elementFormDefault="qualified"
+	targetNamespace="data/transform/xml/meta">
+
+	<!-- Changes the source names for attributes or elements. Default is the node's own name. -->
+	<xsd:element name="source-name" type="xsd:string"/>
+
+</xsd:schema>

@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . '/../types/XmlSchemaCustomSimpleType.php';
 require_once dirname(__FILE__) . '/../types/XmlSchemaComplexType.php';
 
 abstract class XmlSchemaNode extends XmlSchemaParticle {
-	protected $name;
+	protected $name, $source_name;
 	protected $type = NULL;
 
 	const NODE_TYPE_ATTRIBUTE = 'attribute';
@@ -14,10 +14,29 @@ abstract class XmlSchemaNode extends XmlSchemaParticle {
 		parent::__construct($schema, $node);
 
 		$this->name = $node->getAttribute('name');
+		$this->extractMeta();
+	}
+
+	private function extractMeta() {
+		# defaults:
+		$this->source_name = $this->name;
+
+		$meta = $this->schema->query('xsd:annotation/xsd:appinfo/transform:*', $this->node);
+		foreach ($meta AS $node) {
+			switch ($node->localName) {
+				case 'source-name':
+					$this->source_name = $node->nodeValue;
+					break;
+			}
+		}
 	}
 
 	public function getName() {
 		return $this->name;
+	}
+
+	public function getSourceName() {
+		return $this->source_name;
 	}
 
 	public function getSchema() {
