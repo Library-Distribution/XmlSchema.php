@@ -20,6 +20,7 @@ class XmlSchema extends XmlSchemaNode {
 	private $types = array();
 
 	const schemaNamespace = 'http://www.w3.org/2001/XMLSchema';
+	const metaNamespace = 'data/transform/xml/meta';
 
 	public function __construct($source) {
 		$this->doc = new DOMDocument();
@@ -27,6 +28,7 @@ class XmlSchema extends XmlSchemaNode {
 
 		$this->xpath = new DOMXPath($this->doc);
 		$this->xpath->registerNamespace('xsd', self::schemaNamespace);
+		$this->xpath->registerNamespace('transform', self::metaNamespace);
 		$this->prefix = $this->doc->lookupPrefix(self::schemaNamespace);
 
 		parent::__construct($this, $this->rootElement()->node);
