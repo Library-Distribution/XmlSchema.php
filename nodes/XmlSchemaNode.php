@@ -17,18 +17,21 @@ abstract class XmlSchemaNode extends XmlSchemaParticle {
 		$this->extractMeta();
 	}
 
-	private function extractMeta() {
+	protected function extractMeta() {
 		# defaults:
 		$this->source_name = $this->name;
 
-		$meta = $this->schema->query('xsd:annotation/xsd:appinfo/transform:*', $this->node);
-		foreach ($meta AS $node) {
+		foreach ($this->get_meta_nodes() AS $node) {
 			switch ($node->localName) {
 				case 'source-name':
 					$this->source_name = $node->nodeValue;
 					break;
 			}
 		}
+	}
+
+	protected function get_meta_nodes() {
+		return $this->schema->query('xsd:annotation/xsd:appinfo/transform:*', $this->node);
 	}
 
 	public function getName() {
