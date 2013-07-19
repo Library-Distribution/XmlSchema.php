@@ -24,5 +24,13 @@ class XmlSchemaElement extends XmlSchemaNode {
 
 		return array($node);
 	}
+
+	public function minOccurs() {
+		return $this->getAttribute('minOccurs', 1);
+	}
+
+	public function maxOccurs() {
+		return $this->getAttribute('maxOccurs', 1);
+	}
 }
 ?>

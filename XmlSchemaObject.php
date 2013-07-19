@@ -17,5 +17,12 @@ abstract class XmlSchemaObject {
 
 	# Returns an array of DOMNode instances or simple types
 	public abstract function coerce($value);
+
+	protected function getAttribute($name, $default = NULL) {
+		if ($this->node->hasAttributeNS(XmlSchema::schemaNamespace, $name)) {
+			return $this->node->getAttributeNS(XmlSchema::schemaNamespace, $name);
+		}
+		return $default;
+	}
 }
 ?>
